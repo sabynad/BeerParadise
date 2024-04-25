@@ -1,0 +1,30 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div class="beer-container" *ngIf="beer$ | async as beer">
+  <img [src]="beer.imageUrl" alt="">
+  <div class="beer-info">
+    <h1 class="beer-name">{{ beer.name }}</h1>
+    <p class="manufacturer">by {{ beer.manufacturer }}</p>
+    <h3>Description</h3>
+    <p>{{ beer.description }}</p>
+    <h3>Ingrédients principaux</h3>
+    <p>{{ beer.mainIngredient }}</p>
+    <div class="like-buttons" *ngIf="!likePending">
+      <div class="likes">
+        <i [ngClass]="{ 'fas liked': liked, 'far': !liked, 'disabled': disliked }" class="like fa-thumbs-up fa-lg" (click)="onLike()"></i>
+        <span>{{ beer.likes }}</span>
+      </div>
+      <div class="dislikes">
+        <i [ngClass]="{ 'fas disliked': disliked, 'far': !disliked, 'disabled': liked }" class="dislike fa-thumbs-down fa-lg" (click)="onDislike()"></i>
+        <span>{{ beer.dislikes }}</span>
+      </div>
+    </div>
+    <div class="like-pending" *ngIf="likePending">
+      <mat-spinner class="white-spinner"></mat-spinner>
+    </div>
+    <div class="control-buttons">
+      <button mat-raised-button (click)="onBack()">BACK</button>
+      <button mat-raised-button color="primary" (click)="onModify()" *ngIf="userId === beer.userId">MODIFY</button>
+      <button mat-raised-button color="warn" (click)="onDelete()" *ngIf="userId === beer.userId">DELETE</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<nav>
+  <div class="left-nav">
+    <ul>
+      <li>
+        <a routerLink="beers" routerLinkActive="active" *ngIf="isAuth$ | async">
+          ALL BEERS
+        </a>
+      </li>
+      <li>
+        <a routerLink="new-beer" routerLinkActive="active" *ngIf="isAuth$ | async">
+          ADD BEER
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="logo">
+    <div class="logo-image">
+      <img alt="Flame logo" src="../../assets/images/beer.jpg">
+    </div>
+    <div class="logo-text">
+      <h1>
+        BEER PARADISE
+      </h1>
+      <h5>
+        THE WORD'S BEST BEERS REVIEWS
+      </h5>
+    </div>
+  </div>
+  <div class="right-nav">
+    <ul>
+      <li>
+        <a routerLink="signup" routerLinkActive="active" *ngIf="!(isAuth$ | async)">
+          SIGN UP
+        </a>
+      </li>
+      <li>
+        <a routerLink="login" routerLinkActive="active" *ngIf="!(isAuth$ | async)">
+          LOGIN
+        </a>
+      </li>
+      <li>
+        <a (click)="onLogout()" *ngIf="isAuth$ | async">
+          LOGOUT
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,32 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<form [formGroup]="beerForm" *ngIf="!loading">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="manufacturer">Manufacturer</label>
+    <input type="text" class="form-control" id="manufacturer" formControlName="manufacturer">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" rows="5" formControlName="description"></textarea>
+  </div>
+  <div class="form-group">
+    <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
+    <button mat-raised-button color="primary" (click)="imageInput.click()">ADD IMAGE</button>
+    <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
+  </div>
+  <div class="form-group">
+    <label for="main-ingredient">Main Ingredient</label>
+    <input type="text" class="form-control" id="main-ingredient" formControlName="mainIngredient">
+  </div>
+  <div class="form-group">
+    <label for="degree">Degree of alcohol</label>
+    <div class="degree-container">
+      <input type="range" class="custom-range degree-range" min="1" max="10" id="degree" formControlName="degree">
+      <input type="number" class="form-control degree-reading" formControlName="degreeValue">
+    </div>
+  </div>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="beerForm.invalid">SUBMIT</button>
+</form>

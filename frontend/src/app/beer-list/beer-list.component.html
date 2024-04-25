@@ -1,0 +1,14 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<ng-container *ngIf="beers$ | async as beers">
+  <p *ngIf="!loading && beers.length <= 0">
+    No beers to display!
+  </p>
+  <p class="list-title" *ngIf="!loading && beers.length > 0">THE BEERS</p>
+  <div class="beer-list" *ngIf="!loading && beers.length  > 0">
+    <div class="beer-list-item" *ngFor="let beer of beers" (click)="onClickBeer(beer._id)">
+      <img alt="beer image" [src]="beer.imageUrl">
+      <h4>{{ beer.name | uppercase }}</h4>
+      <p>Degree: {{ beer.degree }}/10</p>
+    </div>
+  </div>
+</ng-container>
