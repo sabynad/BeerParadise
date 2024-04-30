@@ -6,7 +6,7 @@ const beerSchema = mongoose.Schema({
     manufacturer: { type: String, required: true },
     description: { type: String, required: true },
     mainIngredient: { type: String, required: true },
-    imageUrl: { type: String, required: false },
+    imageUrl: { type: String, required: true },
     degree : { type: Number, required: true },
     likes: { type: Number, required: true },
     dislikes: { type: Number, required: true },

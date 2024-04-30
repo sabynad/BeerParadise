@@ -1,7 +1,6 @@
 
 const express = require('express');
 
-
 const app = express();
 
 //mongodb+srv://<username>:<password>@cluster0.onxquvc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
@@ -24,9 +23,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//..importation de router.......
-const path = require('path');
-app.use('/images', express.static(path.join(__dirname,'images')));
 
 const userRoutes = require('./routes/users');
 app.use('/api/auth', userRoutes);
@@ -34,8 +30,8 @@ app.use('/api/auth', userRoutes);
 const beerRoutes = require('./routes/beers');
 app.use('/api/beers', beerRoutes);
 
-
-
-
+//..importation de router.......
+const path = require('path');
+app.use('/images', express.static(path.join(__dirname,'images')));
 
 module.exports = app;
